@@ -29,6 +29,18 @@
   --hsla-example: hsla(210, 100%, 56%, 1);
 }
 
+.sr-only {
+	border-width: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
 body {
   background-color: var(--background);
   color: var(--text-primary);
@@ -68,11 +80,56 @@ header {
   justify-content: space-between;
   padding: .5rem 1rem;
 
+	div {
+		a {
+			background-color: #334155;
+			border-radius: 0.5rem;
+			color: var(--text-primary);
+			display: inline-block;
+			font-size: 0.875rem;
+			font-weight: 700;
+			padding: 0.5rem 1rem;
+			text-decoration: none;
+			transition: color 0.2s;
+
+			&:first-child {
+				background-color: rgba(0, 153, 255, .3);
+				color: var(--primary-light);
+			}
+		}
+	}
+
   h2 {
     color: var(--text-primary);
     font-size: 1.25rem;
     font-weight: 700;
   }
+
+	.user-links {
+		align-items: center;
+		display: flex;
+		gap: 0.5rem;
+
+		a {
+			background-color: rgba(0, 153, 255, .3);
+			color: var(--primary-light);
+			transition: color 0.2s;
+
+			&:last-child {
+				align-items: center;
+				background: none;
+				display: flex;
+				justify-content: center;
+			}
+		}
+
+		.avatar {
+			border-radius: 9999px;
+			height: 40px;
+			object-fit: cover;
+			width: 40px;
+		}
+	}
 }
 
 nav {
@@ -91,17 +148,6 @@ nav {
       outline: none;
     }
   }
-}
-
-header div a {
-  background-color: #334155;
-  border-radius: 0.5rem;
-  color: var(--text-primary);
-  display: inline-block;
-  font-size: 0.875rem;
-  font-weight: 700;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
 }
 
 main > section:nth-child(1) {
@@ -303,4 +349,150 @@ article {
   h3 {
     font-weight: 500;
   }
+}
+
+.jobs-search {
+  height: auto !important;
+  margin: 0;
+  padding: 0;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: .25rem;
+  }
+
+  p {
+    color: var(--text-muted);
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+
+  form {
+    max-width: 1280px;
+    width: 100%;
+  }
+
+  form div {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+	.search-bar {
+    background: var(--input-bg);
+    padding: .25rem .5rem;
+  }
+
+  .search-filters {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: .5rem;
+
+		select {
+			background-color: var(--input-bg);
+			border: none;
+			border-radius: .5rem;
+			color: var(--text-primary);
+			padding: 1rem;
+		}
+  }
+}
+
+.jobs {
+	margin: 0 auto;
+	max-width: 1280px;
+
+	& > header {
+		align-items: flex-start;
+		border: none;
+	}
+}
+
+.jobs-listing {
+	border: 1px solid rgba(255, 255, 255, .3);
+	border-radius: 1rem;
+	max-width: 100%;
+
+	header {
+		align-items: start;
+	}
+
+	article {
+		align-items: stretch;
+		background: none;
+		border-bottom: 1px solid rgba(255, 255, 255, .3);
+		border-radius: 0;
+		box-shadow: none;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin: 0;
+		padding: 1.5rem;
+
+		header {
+			border-bottom: none;
+			justify-content: space-between;
+			padding: 0;
+
+			.jobs-listing__job-details {
+				color: var(--text-muted)
+			}
+
+			button {
+				background-color: var(--primary-light);
+			}
+
+			small {
+				color: var(--text-muted);
+			}
+		}
+
+		p {
+			margin-top: 0.5rem;
+		}
+
+		small {
+			font-size: .875rem;
+			opacity: .75;
+		}
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+}
+
+.pagination {
+	align-items: center;
+	display: flex;
+	gap: 0.5rem;
+	justify-content: center;
+	margin-block: 2rem;
+
+	a {
+		align-items: center;
+		border-radius: 0.375rem;
+		color: var(--text-muted);
+		display: flex;
+		height: 2.5rem;
+		justify-content: center;
+		text-decoration: none;
+		transition: all .3s;
+		width: 2.5rem;
+
+		&:active {
+			transform: scale(0.90);
+		}
+
+		&:focus,
+		&:hover {
+			background-color: #FFFFFF;
+		}
+
+		&.active {
+			background-color: var(--primary-light);
+			color: white;
+			pointer-events: none;
+		}
+	}
 }
