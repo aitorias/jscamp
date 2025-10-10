@@ -420,7 +420,7 @@ article {
 	}
 }
 
-.jobs-listing {
+.jobs-listings {
 	border: 1px solid rgba(255, 255, 255, .3);
 	border-radius: 1rem;
 	max-width: 100%;
@@ -446,7 +446,7 @@ article {
 			justify-content: space-between;
 			padding: 0;
 
-			.jobs-listing__job-details {
+			.jobs-listings__job-details {
 				color: var(--text-muted)
 			}
 
