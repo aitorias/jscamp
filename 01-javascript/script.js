@@ -10,8 +10,24 @@ jobsListingSection?.addEventListener('click', (event) => {
   }
 })
 
-const filter = document.querySelector('#filter-technology')
+const filterTechnology = document.querySelector('#filter-technology')
+const filterLocation = document.querySelector('#filter-location')
+const jobsLocations = document.querySelectorAll('.jobs-listings__job-location')
 
-filter?.addEventListener('change', function () {
-  console.log(filter.value)
+function findLocation(location) {
+	jobsLocations.forEach(jobLocation => {
+		const closestCard = jobLocation.closest('.jobs-listings__job-listing-card')
+
+		if (location === '' || jobLocation.dataset.locationType === location) {
+			closestCard.classList.remove('hidden')
+		} else {
+			closestCard.classList.add('hidden')
+		}
+	})
+}
+
+filterLocation?.addEventListener('change', () => {
+	const selectedLocation = filterLocation.value
+
+	findLocation(selectedLocation)
 })
