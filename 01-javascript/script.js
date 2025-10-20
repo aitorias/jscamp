@@ -12,16 +12,16 @@ jobsListingSection?.addEventListener('click', (event) => {
 
 const filterTechnology = document.querySelector('#filter-technology')
 const filterLocation = document.querySelector('#filter-location')
-const jobsLocations = document.querySelectorAll('.jobs-listings__job-location')
+const jobsCards = document.querySelectorAll('.jobs-listings__job-listing-card')
 
 function findLocation(location) {
-	jobsLocations.forEach(jobLocation => {
-		const closestCard = jobLocation.closest('.jobs-listings__job-listing-card')
+	jobsCards.forEach(jobCard => {
+		const locationType = jobCard.dataset.locationType
 
-		if (location === '' || jobLocation.dataset.locationType === location) {
-			closestCard.classList.remove('hidden')
+		if (location === '' || locationType === location) {
+			jobCard.classList.remove('hidden')
 		} else {
-			closestCard.classList.add('hidden')
+			jobCard.classList.add('hidden')
 		}
 	})
 }
