@@ -17,12 +17,9 @@ const jobsCards = document.querySelectorAll('.jobs-listings__job-listing-card')
 function findLocation(location) {
 	jobsCards.forEach(jobCard => {
 		const locationType = jobCard.dataset.locationType
+		const isShown = location === '' || locationType === location
 
-		if (location === '' || locationType === location) {
-			jobCard.classList.remove('hidden')
-		} else {
-			jobCard.classList.add('hidden')
-		}
+		jobCard.classList.toggle('hidden', !isShown)
 	})
 }
 
