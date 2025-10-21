@@ -30,28 +30,36 @@ fetch('./data.json')
 .then((jobs) => {
 	jobs.forEach(job => {
 		const jobArticle = document.createElement('article')
+		const headerArticle = document.createElement('header')
+		const headerWrapperArticle = document.createElement('div')
+		const titleArticle = document.createElement('h3')
+		const metaWrapperArticle = document.createElement('div')
+		const metaCompanyArticle = document.createElement('small')
+		const metaSeparator = document.createElement('small')
+		const metaLocationArticle = document.createElement('small')
+		const buttonApply = document.createElement('button')
+		const descriptionArticleWrapper = document.createElement('div')
+		const descriptionArticle = document.createElement('p')
 
-		jobArticle.classList.add('jobs-listings__job-listing-card')
 
+		jobArticle.className = 'jobs-listings__job-listing-card'
 		jobArticle.dataset.technology = job.data.technology
 		jobArticle.dataset.locationType = job.data.location_type
 		jobArticle.dataset.experience = job.data.experience
+		titleArticle.textContent = job.title
+		metaWrapperArticle.className = 'jobs-listings__job-details'
+		metaCompanyArticle.textContent = job.company
+		metaSeparator.textContent = '|'
+		metaLocationArticle.textContent = job.location
+		descriptionArticle.textContent = job.description
+		buttonApply.className = 'button-apply-job'
+		buttonApply.textContent = 'Aplicar'
 
-		jobArticle.innerHTML = `
-		<header>
-			<div>
-				<h3>${job.title}</h3>
-				<div class="jobs-listings__job-details">
-					<small class="jobs-listings__job-business">${job.company}</small> <small>|</small> <small class="jobs-listings__job-location">${job.location}</small>
-				</div>
-			</div>
-			<button class="button-apply-job">Apply</button>
-		</header>
-		<div>
-			<p>${job.description}</p>
-		</div>
-		`
-
+		metaWrapperArticle.append(metaCompanyArticle, metaSeparator, metaLocationArticle)
+		headerWrapperArticle.append(titleArticle, metaWrapperArticle)
+		headerArticle.append(headerWrapperArticle, buttonApply)
+		descriptionArticleWrapper.appendChild(descriptionArticle)
+		jobArticle.append(headerArticle, descriptionArticleWrapper)
 		jobsListingSection.appendChild(jobArticle)
 	})
 })
