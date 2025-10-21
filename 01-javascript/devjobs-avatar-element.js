@@ -1,22 +1,33 @@
 class DevJobsAvatarElement extends HTMLElement {
 	constructor() {
-		super();
+		super()
+	}
+
+	createUrl(service, username) {
+		return `https://unavatar.io/${service}/${username}`
 	}
 
 	render() {
-		const shadow = this.attachShadow({ mode: "open" });
+		const shadow = this.attachShadow({ mode: "open" })
 
-		const link = document.createElement('a');
-		link.href = '#';
-		link.setAttribute('class', 'avatar-link');
+		const service = this.getAttribute('service') ?? 'github'
+		const username = this.getAttribute('username') ?? 'aitorias'
+		const size = this.getAttribute('size') ?? '40'
 
-		const img = document.createElement('img');
-		img.src = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBeG7G_fClYlNDdKTzEHA670Uh9TsfTwHCNng2nJOHZCsw_jzXKbuYg-ldPUGFyi06-RD8U4HtIew9rpl5T8KZpJLMfjHDm4EzNUz8rmjZK31QJTHhMqTY3_Kb8A2X_2zq_sDsq_v05AiSRHLlDPcyX1NmEoPCfW01ygMJcjz3gb0lUUZO_9qQq67stmy6-p1WbZReGs7T6RvlsxS_vN6KZi9UyUHJ80dTs-NADdsMxt3pXS8dF07JN11dXZAZp-UdqyFt7glf9jmA';
-		img.setAttribute('class', 'avatar-image');
+		const url = this.createUrl(service, username)
 
-		link.appendChild(img);
+		const link = document.createElement('a')
+		link.href = '#'
+		link.setAttribute('class', 'avatar-link')
 
-		const style = document.createElement('style');
+		const img = document.createElement('img')
+		img.src = url
+		img.alt = `Avatar de ${this.username}`
+		img.setAttribute('class', 'avatar-image')
+
+		link.appendChild(img)
+
+		const style = document.createElement('style')
 
 		style.textContent = `
 			.avatar-link {
@@ -26,19 +37,19 @@ class DevJobsAvatarElement extends HTMLElement {
 
 			.avatar-image {
 				border-radius: 9999px;
-				height: 40px;
+				height: ${size}px;
 				object-fit: cover;
-				width: 40px;
+				width: ${size}px;
 			}
-		`;
+		`
 
-		shadow.appendChild(style);
-		shadow.appendChild(link);
+		shadow.appendChild(style)
+		shadow.appendChild(link)
 	}
 
 	connectedCallback() {
-		this.render();
+		this.render()
 	}
 }
 
-customElements.define('devjobs-avatar', DevJobsAvatarElement);
+customElements.define('devjobs-avatar', DevJobsAvatarElement)

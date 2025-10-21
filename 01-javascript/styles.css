@@ -250,16 +250,9 @@ form {
 		}
 	}
 
-	input[type="search"] {
-		background: transparent;
-		border: none;
-		color: var(--text-primary);
-		flex: 1;
-		font-family: inherit;
-		outline: none;
-	}
-
-	input[type="text"] {
+	input[type="search"],
+	input[type="text"],
+	.input {
 		background: transparent;
 		border: none;
 		color: var(--text-primary);
