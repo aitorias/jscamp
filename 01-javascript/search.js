@@ -8,7 +8,8 @@ function displayResultsCount(found, total) {
 	if (!resultsFound) {
 		resultsFound = document.createElement('p')
 		resultsFound.id = 'results-found'
-		jobsListingSection.parentElement.insertBefore(resultsFound, jobsListingSection)
+		resultsFound.classList.add('mb-2')
+		jobsSection.insertBefore(resultsFound, jobsListingSection)
 	}
 
 	resultsFound.textContent = `Mostrando ${found.length} de ${total.length} ofertas`

@@ -666,6 +666,10 @@ select {
 	margin-inline: auto;
 }
 
+.mb-2 {
+	margin-bottom: 2rem;
+}
+
 .hidden {
 	display: none !important;
 	visibility: hidden !important;
