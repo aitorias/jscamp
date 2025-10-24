@@ -5,7 +5,7 @@ fetch('./data.json')
 	return response.json()
 })
 .then((jobs) => {
-	jobs.forEach(job => {
+	jobs.forEach((job) => {
 		const jobArticle = document.createElement('article')
 		const headerArticle = document.createElement('header')
 		const headerWrapperArticle = document.createElement('div')
