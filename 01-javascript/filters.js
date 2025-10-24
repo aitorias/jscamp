@@ -4,26 +4,50 @@ const filters = {
   experience: document.querySelector('#filter-experience')
 }
 
+const technologies = document.querySelector('#technology-checkboxes')
+
+function getCheckedTechnologies() {
+	const jobsCards = document.querySelectorAll('.jobs-listings__job-listing-card')
+	const technologiesCheckboxes = [...document.getElementsByName('technology')]
+
+	const checkedTechnologies = technologiesCheckboxes.filter((checkbox) => checkbox.checked).map((checkbox) => checkbox.value)
+
+	jobsCards.forEach(jobCard => {
+		const articleTechnologies = jobCard.dataset.technology?.split(',').map(t => t.toLowerCase()) || []
+
+		let isShown = true
+
+		if (checkedTechnologies.length > 0 && !checkedTechnologies.some((technology) => articleTechnologies.includes(technology))) {
+			isShown = false
+		}
+
+		jobCard.classList.toggle('hidden', !isShown)
+	})
+}
+
 function filterJobs() {
   const jobsCards = document.querySelectorAll('.jobs-listings__job-listing-card')
 
   jobsCards.forEach(jobCard => {
+    const technologyFilter = (filters.technology?.value || '').toLowerCase()
+		const locationFilter = (filters.locationType?.value || '').toLowerCase()
+		const experienceFilter = (filters.experience?.value || '').toLowerCase()
+    const articleTechnologies = jobCard.dataset.technology?.split(',').map(t => t.toLowerCase()) || []
+
     let isShown = true
 
-    const techFilter = (filters.technology?.value || '').toLowerCase()
-    const articleTechnologies = jobCard.dataset.technology?.split(',').map(t => t.toLowerCase()) || []
-    if (techFilter && !articleTechnologies.includes(techFilter)) isShown = false
+    if (technologyFilter && !articleTechnologies.includes(techFilter)) isShown = false
 
-    const locationFilter = (filters.locationType?.value || '').toLowerCase()
     if (locationFilter && jobCard.dataset.locationType.toLowerCase() !== locationFilter) isShown = false
 
-    const experienceFilter = (filters.experience?.value || '').toLowerCase()
     if (experienceFilter && jobCard.dataset.experience.toLowerCase() !== experienceFilter) isShown = false
 
     jobCard.classList.toggle('hidden', !isShown)
   })
 }
 
-Object.values(filters).forEach(filter => {
+Object.values(filters).forEach((filter) => {
   filter?.addEventListener('change', filterJobs)
 })
+
+technologies.addEventListener('change', getCheckedTechnologies)
