@@ -1,34 +1,45 @@
+import { allJobs } from "./fetch-data.js"
 import displayResultsFound from './resultsFound.js'
+import { renderJobs } from './pagination.js'
+import { updateActiveButton } from "./utils.js"
 
 const searchInput = document.querySelector('#search-jobs')
 const resultsFound = document.querySelector('#results-found')
+const RESULTS_PER_PAGE = 3
+
+let currentJobs = allJobs
+let currentPage = 1
 
 function filterJobs(searchTerm) {
-	const jobsCards = document.querySelectorAll('.jobs-listings__job-listing-card')
-	const jobsCardsArray = Array.from(jobsCards)
-
 	if (searchTerm === '') {
-		jobsCardsArray.forEach((jobCard) => jobCard.classList.toggle('hidden', false))
+		currentJobs = allJobs
+    const startIndex = 0
+    const endIndex = RESULTS_PER_PAGE
 
-		resultsFound.classList.add('hidden')
+		renderJobs(currentJobs.slice(startIndex, endIndex))
+    resultsFound.classList.add('hidden')
+		updateActiveButton(currentPage)
 
 		return
 	}
 
-	const foundJobs = jobsCardsArray.filter((jobCard) => {
-		const jobTitle = jobCard.getElementsByTagName('h3')[0].textContent.toLowerCase()
+	currentJobs = allJobs.filter((job) => {
+		const jobTitle = job.title.toLowerCase()
 		const jobMatch = jobTitle.includes(searchTerm)
-
-		jobCard.classList.toggle('hidden', !jobMatch)
 
 		return jobMatch
 	})
 
-	displayResultsFound(resultsFound, foundJobs, jobsCardsArray)
+  const startIndex = 0
+  const endIndex = RESULTS_PER_PAGE
+
+	renderJobs(currentJobs.slice(startIndex, endIndex))
+	displayResultsFound(resultsFound, currentJobs, allJobs)
+	updateActiveButton(currentPage)
 }
 
 searchInput.addEventListener('input', (event) => {
 	const searchTerm = event.target.value.toLowerCase().trim()
-
+	currentPage = 1
 	filterJobs(searchTerm)
 })
