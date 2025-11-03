@@ -2,10 +2,10 @@ import { allJobs } from "./fetch-data.js"
 import displayResultsFound from './resultsFound.js'
 import { renderJobs } from './pagination.js'
 import { updateActiveButton } from "./utils.js"
+import { RESULTS_PER_PAGE } from "./env.js"
 
 const searchInput = document.querySelector('#search-jobs')
 const resultsFound = document.querySelector('#results-found')
-const RESULTS_PER_PAGE = 3
 
 let currentJobs = allJobs
 let currentPage = 1
