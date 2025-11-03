@@ -1,12 +1,7 @@
-const searchInput = document.querySelector('#search-jobs')
-const jobsListingSection = document.querySelector('.jobs-listings')
-const jobsSection = document.querySelector('.jobs')
-const resultsFound = document.querySelector('#results-found')
+import displayResultsFound from './resultsFound.js'
 
-function displayResultsFound(found, total) {
-	resultsFound.textContent = `Mostrando ${found.length} de ${total.length} ofertas`
-	resultsFound.classList.toggle('hidden', found.length === total.length)
-}
+const searchInput = document.querySelector('#search-jobs')
+const resultsFound = document.querySelector('#results-found')
 
 function filterJobs(searchTerm) {
 	const jobsCards = document.querySelectorAll('.jobs-listings__job-listing-card')
@@ -28,7 +23,8 @@ function filterJobs(searchTerm) {
 
 		return jobMatch
 	})
-	displayResultsFound(foundJobs, jobsCardsArray)
+
+	displayResultsFound(resultsFound, foundJobs, jobsCardsArray)
 }
 
 searchInput.addEventListener('input', (event) => {
