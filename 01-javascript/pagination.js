@@ -1,16 +1,46 @@
 import createChevronIcon from "./createChevronIcon.js"
 import { allJobs, fetchJobs } from "./fetch-data.js"
+import { filteredJobs } from "./filters.js"
 import { updateActiveButton } from "./utils.js"
+import { RESULTS_PER_PAGE } from "./env.js"
 
 const jobsListingSection = document.querySelector('.jobs-listings')
 const paginationSection = document.querySelector('.pagination')
 const paginationButtonsSection = document.querySelector('.pagination__buttons')
-const RESULTS_PER_PAGE = 3
 
 let jobs = []
 let currentPage = 1
 let startIndex = (currentPage - 1) * RESULTS_PER_PAGE
 let endIndex = startIndex + RESULTS_PER_PAGE
+
+export function updatePaginationButtons(totalJobs) {
+    const totalPages = Math.ceil(totalJobs / RESULTS_PER_PAGE)
+    paginationButtonsSection.innerHTML = ''
+
+    if (RESULTS_PER_PAGE > 1) {
+        for (let i = 1; i <= totalPages; i++) {
+            const buttonElement = document.createElement('button')
+            buttonElement.textContent = i
+            buttonElement.className = 'pagination__button'
+            buttonElement.dataset.pageNumber = i
+
+            if (i === currentPage) {
+                buttonElement.disabled = true
+                buttonElement.classList.add('active')
+            }
+
+            paginationButtonsSection.appendChild(buttonElement)
+        }
+
+        const prevButton = document.querySelector('.pagination__prev-button')
+        const nextButton = document.querySelector('.pagination__next-button')
+
+        if (prevButton && nextButton) {
+            prevButton.disabled = currentPage <= 1
+            nextButton.disabled = currentPage >= totalPages
+        }
+    }
+}
 
 export function renderJobs(jobs) {
   jobsListingSection.innerHTML = ''
@@ -140,7 +170,7 @@ fetchJobs.then(() => {
 
 		updateActiveButton(currentPage)
 		updateIndexes(currentPage, RESULTS_PER_PAGE)
-		renderJobs(jobs.slice(startIndex, endIndex))
+		renderJobs(filteredJobs.slice(startIndex, endIndex))
 	})
 }).catch((error) => {
 	console.error('Error loading jobs for pagination:', error)
