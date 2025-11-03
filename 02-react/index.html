@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="author" content="Aitorias" />
+	<meta name="description" content="Encuentra las mejores ofertas de trabajo para desarrolladores en DevJobs.">
+	<meta name="theme-color" content="#334155" />
+	<!-- OPEN GRAPH -->
+	<meta property="og:title" content="DevJobs - Inicio" />
+	<meta property="og:description" content="Encuentra las mejores ofertas de trabajo para desarrolladores en DevJobs." />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://devjobs.com" />
+	<meta property="og:image" content="https://devjobs.com/og-image.webp" />
+	<meta property="og:image:type" content="image/webp" />
+	<meta property="og:image:alt" content="Encuentra las mejores ofertas de trabajo para desarrolladores en DevJobs." />
+	<meta property="og:site_name" content="DevJobs" />
+	<meta property="og:locale" content="es_ES" />
+	<!-- END OPENGRAPH -->
+	<!-- TWITTER -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="DevJobs - Inicio" />
+	<meta name="twitter:description"
+		content="Encuentra las mejores ofertas de trabajo para desarrolladores en DevJobs." />
+	<meta name="twitter:image" content="https://devjobs.com/og-image.png" />
+	<meta name="twitter:site" content="@devjobs" />
+	<meta name="twitter:creator" content="@knightaitorias" />
+	<!-- END TWITTER -->
+	<link rel="canonical" href="https://devjobs.com" />
+	<link rel="icon" type="image/png" href="./favicon.png" />
+	<title>DevJobs - Inicio</title>
+	<link rel="stylesheet" href="./styles.css" />
+	<script type="module">
+		import React from 'https://esm.sh/react?dev'
+		import ReactDOM from 'https://esm.sh/react-dom/client?dev'
+
+		window.React = React
+		window.ReactDOMClient = ReactDOM
+	</script>
+
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<script type="text/babel">
+		function Saludo({ nombre }) {
+			return <h2 style={{color: "#09f"}}>Hola, {nombre}</h2>
+		}
+
+		const empleos = [
+			{ titulo: 'Frontend Developer', empresa: 'TechCorp', ubicacion: 'Madrid' },
+			{ titulo: 'Backend Developer', empresa: 'CodeLabs', ubicacion: 'Barcelona' },
+			{ titulo: 'Full Stack Developer', empresa: 'DevStudio', ubicacion: 'Valencia' },
+		]
+
+		const empleosConId = empleos.map(empleo => ({
+  		...empleo,
+  		id: crypto.randomUUID()
+		}))
+
+
+		function App() {
+			return (
+				<>
+					<Saludo nombre="Aitorias" />
+					<p>Hay {empleos.length} ofertas disponibles</p>
+
+					{empleosConId.map((empleo) =>
+						<article key={empleo.id} className='job-listing-card'>
+							<h3>{empleo.titulo}</h3>
+							<small>{empleo.empresa} | {empleo.ubicacion}</small>
+							<button className="button-apply-job">Aplicar</button>
+						</article>
+					)}
+				</>
+			)
+		}
+
+		window.onload = () => {
+			const rootEl = document.querySelector('#app-root')
+			const root = ReactDOMClient.createRoot(rootEl)
+			root.render(<App />)
+		}
+	</script>
+</head>
+
+<body>
+	<header>
+		<h1>
+			<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+				viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+				<polyline points="16 18 22 12 16 6"></polyline>
+				<polyline points="8 6 2 12 8 18"></polyline>
+			</svg>
+			DevJobs
+		</h1>
+		<nav>
+			<a href="index.html" class="active">Inicio</a>
+			<a href="empleos.html">Empleos</a>
+		</nav>
+		<div>
+			<a href="#">Publicar un empleo</a>
+			<a href="#">Iniciar sesión</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="jobs-search">
+			<h1>React.js, primeros pasos</h1>
+			<div id="app-root"></div>
+	</main>
+	<footer>
+		<small>&copy; 2025 DevJobs. Todos los derechos reservados.</small>
+	</footer>
+</body>
+
+</html>
