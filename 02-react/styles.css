@@ -50,10 +50,6 @@ body {
   font-family: 'Inter Variable', system-ui, -apple-system, Arial, sans-serif;
   line-height: 1.5;
   min-height: 100vh;
-
-	& > header {
-		min-height: 75px;
-	}
 }
 
 h1 {
@@ -124,6 +120,17 @@ header {
 				background: none;
 				display: flex;
 				justify-content: center;
+			}
+		}
+
+		.avatar-link {
+			align-items: center;
+			display: flex;
+			padding: 0;
+
+			.avatar-image {
+				border-radius: 9999px;
+				object-fit: cover;
 			}
 		}
 	}
@@ -407,6 +414,10 @@ select {
 	}
 }
 
+.site-header {
+	min-height: 75px;
+}
+
 .card {
   background-color: var(--card-bg);
   border-radius: 0.5rem;
@@ -517,7 +528,7 @@ select {
 			padding: 0;
 
 			.jobs-listings__job-details {
-				color: var(--text-muted)
+				color: var(--text-muted);
 			}
 
 			button {
@@ -537,6 +548,12 @@ select {
 			small {
 				color: var(--text-muted);
 			}
+		}
+
+		.jobs-listings__more-job-details {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 2rem;
 		}
 
 		p {
