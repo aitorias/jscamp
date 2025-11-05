@@ -146,7 +146,8 @@ if (jobsListingSection || paginationSection || paginationButtonsSection) {
 		}
 
 		paginationSection?.addEventListener('click', (event) => {
-			const button = event.target.closest('button');
+			const button = event.target.closest('button')
+			const jobsToShow = filteredJobs.length ? filteredJobs : jobs
 
 			if (!button || button.disabled) return;
 
@@ -171,7 +172,7 @@ if (jobsListingSection || paginationSection || paginationButtonsSection) {
 
 			updateActiveButton(currentPage)
 			updateIndexes(currentPage, RESULTS_PER_PAGE)
-			renderJobs(filteredJobs.slice(startIndex, endIndex))
+			renderJobs(jobsToShow.slice(startIndex, endIndex))
 		})
 	}).catch((error) => {
 		console.error('Error loading jobs for pagination:', error)
