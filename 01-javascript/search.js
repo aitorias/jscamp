@@ -38,7 +38,7 @@ function filterJobs(searchTerm) {
 	updateActiveButton(currentPage)
 }
 
-searchInput.addEventListener('input', (event) => {
+searchInput?.addEventListener('input', (event) => {
 	const searchTerm = event.target.value.toLowerCase().trim()
 	currentPage = 1
 	filterJobs(searchTerm)

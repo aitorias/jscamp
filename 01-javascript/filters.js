@@ -61,4 +61,4 @@ Object.values(filters).forEach((filter) => {
   filter?.addEventListener('change', filterJobs)
 })
 
-technologies.addEventListener('change', getCheckedTechnologies)
+technologies?.addEventListener('change', getCheckedTechnologies)

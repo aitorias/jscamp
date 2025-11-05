@@ -87,91 +87,93 @@ function updateIndexes(currentPage, RESULTS_PER_PAGE) {
 	return { startIndex, endIndex }
 }
 
-fetchJobs.then(() => {
-	jobs = allJobs
-	const totalPages = Math.ceil(jobs.length / RESULTS_PER_PAGE)
+if (jobsListingSection || paginationSection || paginationButtonsSection) {
+	fetchJobs.then(() => {
+		jobs = allJobs
+		const totalPages = Math.ceil(jobs.length / RESULTS_PER_PAGE)
 
-	renderJobs(jobs.slice(startIndex, endIndex))
+		renderJobs(jobs.slice(startIndex, endIndex))
 
-	if (RESULTS_PER_PAGE > 1) {
-		const prevButton = document.createElement('button')
+		if (RESULTS_PER_PAGE > 1) {
+			const prevButton = document.createElement('button')
 
-		prevButton.type = 'button'
-		prevButton.title = 'Anterior'
-		prevButton.className = 'pagination__prev-button'
-		prevButton.dataset.pageNumber = currentPage - 1
+			prevButton.type = 'button'
+			prevButton.title = 'Anterior'
+			prevButton.className = 'pagination__prev-button'
+			prevButton.dataset.pageNumber = currentPage - 1
 
-		prevButton.prepend(createChevronIcon('left'))
+			prevButton.prepend(createChevronIcon('left'))
 
-		prevButton.appendChild(Object.assign(document.createElement('span'), {
-			className: 'sr-only',
-			textContent: 'Anterior'
-		}))
+			prevButton.appendChild(Object.assign(document.createElement('span'), {
+				className: 'sr-only',
+				textContent: 'Anterior'
+			}))
 
-		const nextButton = document.createElement('button')
+			const nextButton = document.createElement('button')
 
-		nextButton.type = 'button'
-		nextButton.title = 'Siguiente'
-		nextButton.className = 'pagination__next-button'
-		nextButton.dataset.pageNumber = currentPage + 1
+			nextButton.type = 'button'
+			nextButton.title = 'Siguiente'
+			nextButton.className = 'pagination__next-button'
+			nextButton.dataset.pageNumber = currentPage + 1
 
-		nextButton.prepend(createChevronIcon('right'))
+			nextButton.prepend(createChevronIcon('right'))
 
-		nextButton.appendChild(Object.assign(document.createElement('span'), {
-			className: 'sr-only',
-			textContent: 'Siguiente'
-		}))
+			nextButton.appendChild(Object.assign(document.createElement('span'), {
+				className: 'sr-only',
+				textContent: 'Siguiente'
+			}))
 
-		paginationSection.append(nextButton)
-		paginationSection.prepend(prevButton)
+			paginationSection.append(nextButton)
+			paginationSection.prepend(prevButton)
 
-		for (let i = 1; i <= totalPages; i++) {
-			const buttonElement = document.createElement('button')
+			for (let i = 1; i <= totalPages; i++) {
+				const buttonElement = document.createElement('button')
 
-			buttonElement.textContent = i
-			buttonElement.className = 'pagination__button'
-			buttonElement.dataset.pageNumber = i
+				buttonElement.textContent = i
+				buttonElement.className = 'pagination__button'
+				buttonElement.dataset.pageNumber = i
 
-			if (i === currentPage) {
-				buttonElement.disabled = true
-				buttonElement.classList.add('active')
+				if (i === currentPage) {
+					buttonElement.disabled = true
+					buttonElement.classList.add('active')
+				}
+
+				paginationButtonsSection.appendChild(buttonElement)
 			}
 
-			paginationButtonsSection.appendChild(buttonElement)
+			prevButton.disabled = currentPage <= 1
+			nextButton.disabled = currentPage >= totalPages
 		}
 
-		prevButton.disabled = currentPage <= 1
-		nextButton.disabled = currentPage >= totalPages
-	}
+		paginationSection?.addEventListener('click', (event) => {
+			const button = event.target.closest('button');
 
-	paginationSection?.addEventListener('click', (event) => {
-		const button = event.target.closest('button');
+			if (!button || button.disabled) return;
 
-		if (!button || button.disabled) return;
+			const prevButton = document.querySelector('.pagination__prev-button')
+			const nextButton = document.querySelector('.pagination__next-button')
 
-		const prevButton = document.querySelector('.pagination__prev-button')
-		const nextButton = document.querySelector('.pagination__next-button')
+			if (button.classList.contains('pagination__prev-button')) {
+				currentPage--
+			} else if (button.classList.contains('pagination__next-button')) {
+				currentPage++
+			} else if (button.classList.contains('pagination__button')) {
+				currentPage = Number(button.dataset.pageNumber)
+			}
 
-		if (button.classList.contains('pagination__prev-button')) {
-			currentPage--
-		} else if (button.classList.contains('pagination__next-button')) {
-			currentPage++
-		} else if (button.classList.contains('pagination__button')) {
-			currentPage = Number(button.dataset.pageNumber)
-		}
+			if (currentPage < 1) currentPage = 1
+			if (currentPage > totalPages) currentPage = totalPages
 
-		if (currentPage < 1) currentPage = 1
-		if (currentPage > totalPages) currentPage = totalPages
+			prevButton.dataset.pageNumber = currentPage - 1
+			nextButton.dataset.pageNumber = currentPage + 1
+			prevButton.disabled = currentPage <= 1
+			nextButton.disabled = currentPage >= totalPages
 
-		prevButton.dataset.pageNumber = currentPage - 1
-		nextButton.dataset.pageNumber = currentPage + 1
-		prevButton.disabled = currentPage <= 1
-		nextButton.disabled = currentPage >= totalPages
-
-		updateActiveButton(currentPage)
-		updateIndexes(currentPage, RESULTS_PER_PAGE)
-		renderJobs(filteredJobs.slice(startIndex, endIndex))
+			updateActiveButton(currentPage)
+			updateIndexes(currentPage, RESULTS_PER_PAGE)
+			renderJobs(filteredJobs.slice(startIndex, endIndex))
+		})
+	}).catch((error) => {
+		console.error('Error loading jobs for pagination:', error)
 	})
-}).catch((error) => {
-	console.error('Error loading jobs for pagination:', error)
-})
+}
