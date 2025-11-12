@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="author" content="Aitorias" />
+	<meta name="description" content="Encuentra las mejores ofertas de trabajo para desarrolladores en DevJobs.">
+	<meta name="theme-color" content="#334155" />
+	<!-- OPEN GRAPH -->
+	<meta property="og:title" content="DevJobs - Inicio" />
+	<meta property="og:description" content="Encuentra las mejores ofertas de trabajo para desarrolladores en DevJobs." />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://devjobs.com" />
+	<meta property="og:image" content="https://devjobs.com/og-image.webp" />
+	<meta property="og:image:type" content="image/webp" />
+	<meta property="og:image:alt" content="Encuentra las mejores ofertas de trabajo para desarrolladores en DevJobs." />
+	<meta property="og:site_name" content="DevJobs" />
+	<meta property="og:locale" content="es_ES" />
+	<!-- END OPENGRAPH -->
+	<!-- TWITTER -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="DevJobs - Inicio" />
+	<meta name="twitter:description"
+		content="Encuentra las mejores ofertas de trabajo para desarrolladores en DevJobs." />
+	<meta name="twitter:image" content="https://devjobs.com/og-image.png" />
+	<meta name="twitter:site" content="@devjobs" />
+	<meta name="twitter:creator" content="@knightaitorias" />
+	<!-- END TWITTER -->
+	<link rel="canonical" href="https://devjobs.com" />
+	<link rel="icon" type="image/png" href="./favicon.png" />
+	<title>DevJobs - Inicio</title>
+	<link rel="stylesheet" href="./styles.css" />
+	<script type="module">
+		import React from 'https://esm.sh/react?dev'
+		import ReactDOM from 'https://esm.sh/react-dom/client?dev'
+
+		window.React = React
+		window.ReactDOMClient = ReactDOM
+	</script>
+
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<script type="text/babel">
+		function createUrl(service, username) {
+			return `https://unavatar.io/${service ? service : 'gitihub'}/${username ? username : 'aitorias'}`
+		}
+
+		function Button({ type, className, onClick, disabled, text }) {
+			return <button type={type} className={className} onClick={onClick} disabled={disabled}>{text}</button>
+		}
+
+		function Image({ src, alt, width, height, className, style }) {
+			return (
+				<img src={src} alt={alt} width={width} height={height} className={className} style={style} />
+			)
+		}
+
+		function Link({ href, className = '', children, isActive }) {
+			return <a
+					href={href}
+					className={`${className} ${isActive ? 'active' : ''}`.trim()}
+				>
+					{children}
+				</a>
+		}
+
+		function SVG({ fill = 'none', stroke = 'currentColor', strokeLinecap = 'round', strokeLinejoin = 'round', strokeWidth = 1, viewBox, children }) {
+			return <svg xmlns='http://www.w3.org/2000/svg' fill={fill} stroke={stroke} strokeLinecap={strokeLinecap} strokeLinejoin={strokeLinejoin} strokeWidth={strokeWidth} viewBox={viewBox}>{children}</svg>
+		}
+
+		function DevJobsAvatar({ service = 'github', username = 'aAitorias', size }) {
+			const url = createUrl(service, username)
+
+			return (
+				<Link href={'#'} className='avatar-link'>
+					<Image
+						src={url}
+						alt={`Avatar de ${username} en ${service}`}
+						width={size}
+						height={size}
+						className='avatar-image'
+						style={{ height: size, width: size }}
+					/>
+				</ Link>
+			)
+		}
+
+		function HeaderNav({ links }) {
+			return (
+				<nav>
+					{links.map((link) => (
+						<Link key={link.href} href={link.href}>{link.text}</Link>
+					))}
+				</nav>
+			)
+		}
+
+		function HeaderLinks({ buttons }) {
+			return (
+				<div className='user-links'>
+					{buttons.map((button) => (
+						<Link key={button.href} href={button.href}>{button.text}</Link>
+					))}
+					<DevJobsAvatar service='github' username='aitorias' size={40} />
+				</div>
+			)
+		}
+
+		function Header() {
+			const menuLinks = [
+				{ href: 'index.html', text: 'Índice' },
+				{ href: 'empleos', text: 'Empleos' }
+			]
+
+			const buttons = [
+				{ href: '#', text: 'Subir CV' }
+			]
+
+			return (
+				<header className='site-header'>
+					<h1>
+						<SVG strokeWidth={2} viewBox={'0 0 24 24'}>
+							<polyline points='16 18 22 12 16 6'></polyline>
+							<polyline points='8 6 2 12 8 18'></polyline>
+						</SVG>
+						DevJobs
+					</h1>
+					<HeaderNav links={menuLinks}  />
+					<HeaderLinks buttons={buttons} />
+				</header>
+			)
+		}
+
+		function JobTitle({ title }) {
+			return <h3>{title}</h3>
+		}
+
+		function JobBusiness({ business }) {
+			return <small>{business}</small>
+		}
+
+		function JobLocation({ location }) {
+			return <small>{location}</small>
+		}
+
+		function JobDetails({ business, location }) {
+			return (
+				<div className='jobs-listings__job-details'>
+					<JobBusiness business={business} /> <small>|</small> <JobLocation location={location} />
+				</div>
+			)
+		}
+
+		function JobApplyButton({ defaultText, isAppliedText }) {
+			const [isApplied, setIsApplied] = React.useState(false)
+
+			const buttonClassAplied = isApplied ? 'is-applied' : ''
+			const text = isApplied ? isAppliedText : defaultText
+
+			const handleClick = () => {
+				setIsApplied(true)
+			}
+
+			return <Button type='button' className={`jobs-listings__apply-button ${buttonClassAplied}`} onClick={handleClick} disabled={isApplied} text={text} />
+		}
+
+		function JobHeader({ title, business, location }) {
+			return (
+				<header>
+					<div>
+						<JobTitle title={title} />
+						<JobDetails business={business} location={location} />
+					</div>
+					<JobApplyButton defaultText={'Aplicar'} isAppliedText={'Aplicado'} />
+				</header>
+			)
+		}
+
+		function JobDescription({ description }) {
+			return (
+				<div>
+					<p>{description}</p>
+				</div>
+			)
+		}
+
+		function JobMoreDetails({ salary, modality, experience }) {
+			return (
+				<div className='jobs-listings__more-job-details'>
+					<span>💰 {salary}</span>
+					<span>📍 {modality}</span>
+					<span>📊 {experience}</span>
+				</div>
+			)
+		}
+
+		function JobCard({ data, title, business, description, salary, modality }) {
+			return (
+				<article className='jobs-listings__job-listing-card' data-technology={data?.technology} data-location-type={data?.locationType} data-experience={data?.experience}>
+					<JobHeader title={title} business={business} location={data?.locationType} />
+					<JobDescription description={description} />
+					<JobMoreDetails salary={salary} modality={modality} experience={data.experience} />
+				</article>
+			)
+		}
+
+		function JobsListings({ jobs }) {
+			return (
+				<div className='jobs-listings'>
+					{jobs.map((job) => (
+						<JobCard
+							key={job.id}
+							title={job.titulo}
+							business={job.empresa}
+							location={job.ubicacion}
+							description={job.descripcion}
+							data={{ technology: 'React', locationType: job.ubicacion, experience: 'Senior'}}
+							salary={'€40,000 - €60,000'}
+							modality={'Remoto'}
+							level={'Senior'}
+						/>
+					))}
+				</div>
+			)
+		}
+
+		function JobSearch() {
+			return (
+				<section className='jobs-search'>
+					<h1>React.js, primeros pasos</h1>
+				</section>
+			)
+		}
+
+		function JobsSection({ jobs }) {
+			return (
+				<section className='jobs'>
+					<header>
+						<h2>Resultados de búsqueda</h2>
+					</header>
+					<JobsListings jobs={jobs} />
+				</section>
+			)
+		}
+
+		function Main({ jobs }) {
+			return (
+				<main>
+					<JobSearch />
+					<JobsSection jobs={jobs} />
+				</main>
+			)
+		}
+
+		function Footer() {
+			return (
+				<footer>
+					<small>&copy; 2025 DevJobs. Todos los derechos reservados.</small>
+				</footer>
+			)
+		}
+
+
+		function App() {
+			const jobs = [
+				{
+					id: 1,
+					titulo: 'Desarrollador Frontend',
+					empresa: 'Tech Solutions Inc.',
+					ubicacion: 'Remoto',
+					descripcion: 'Buscamos un desarrollador frontend con experiencia en React.',
+				},
+				{
+					id: 2,
+					titulo: 'Ingeniero Backend',
+					empresa: 'Data Systems',
+					ubicacion: 'Madrid',
+					descripcion: 'Experiencia con Node.js y bases de datos.',
+				},
+				{
+					id: 3,
+					titulo: 'Full Stack Developer',
+					empresa: 'StartupCo',
+					ubicacion: 'Barcelona',
+					descripcion: 'Desarrollo completo de aplicaciones web.',
+				},
+			]
+
+			return (
+				<>
+					<Header />
+					<Main jobs={jobs} />
+					<Footer />
+				</>
+			)
+		}
+
+		window.onload = () => {
+			const rootEl = document.querySelector('#app-root')
+			const root = ReactDOMClient.createRoot(rootEl)
+			root.render(<App />)
+		}
+	</script>
+</head>
+
+<body>
+	<div id="app-root"></div>
+</body>
+
+</html>
