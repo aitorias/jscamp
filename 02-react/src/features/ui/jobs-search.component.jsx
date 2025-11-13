@@ -22,23 +22,23 @@ export function JobsSearch() {
 						<div aria-labelledby="technology-dropdown" className="dropdown form-group flex-col hidden">
 							<div className="checkbox-group">
 								<input type="checkbox" id="javascript" name="technology" value="javascript" />
-								<label for="javascript">JavaScript</label>
+								<label htmlFor="javascript">JavaScript</label>
 							</div>
 							<div className="checkbox-group">
 								<input type="checkbox" id="python" name="technology" value="python" />
-								<label for="python">Python</label>
+								<label htmlFor="python">Python</label>
 							</div>
 							<div className="checkbox-group">
 								<input type="checkbox" id="java" name="technology" value="java" />
-								<label for="java">Java</label>
+								<label htmlFor="java">Java</label>
 							</div>
 							<div className="checkbox-group">
 								<input type="checkbox" id="react" name="technology" value="react" />
-								<label for="react">React</label>
+								<label htmlFor="react">React</label>
 							</div>
 							<div className="checkbox-group">
 								<input type="checkbox" id="node" name="technology" value="node" />
-								<label for="node">Node.js</label>
+								<label htmlFor="node">Node.js</label>
 							</div>
 						</div>
 					</div>
