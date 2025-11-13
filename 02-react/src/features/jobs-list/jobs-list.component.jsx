@@ -1,7 +1,6 @@
 import { JobCard } from '@features/jobs-list/job-card'
-import jobs from '@data/data.json'
 
-export function JobsList({ page }) {
+export function JobsList({ jobs, page }) {
 	return (
 		<>
 			{jobs.length === 0 ? (
