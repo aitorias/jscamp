@@ -227,36 +227,6 @@ form {
 		border: 1px solid var(--border);
 	}
 
-	button[type="submit"] {
-		background-color: var(--primary-light);
-		border-radius: 0.5rem;
-		border: none;
-		color: white;
-		cursor: pointer;
-		font-family: inherit;
-		font-size: 1rem;
-		font-weight: 400;
-		padding: 0.75rem 1.5rem;
-		transition: all 0.2s;
-		white-space: nowrap;
-
-		&:hover,
-		&:focus {
-			background-color: var(--primary-hover);
-			outline: 2px solid white;
-			outline-offset: 2px;
-		}
-
-		&:active {
-			transform: scale(0.90)
-		}
-
-		&:disabled {
-			opacity: .5;
-			pointer-events: none;
-		}
-	}
-
 	input[type="search"],
 	input[type="text"],
 	.input {
@@ -280,53 +250,6 @@ form {
 		display: flex;
 		flex-shrink: 0;
 		padding-left: 0.75rem;
-	}
-}
-
-button {
-  background-color: var(--primary);
-  border-radius: 0.5rem;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 400;
-  padding: 0.75rem 1.5rem;
-  transition: all 0.2s;
-  white-space: nowrap;
-
-	&.dropdown-button {
-		background-color: var(--input-bg);
-		background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpolyline points="6 9 12 15 18 9"/%3E%3C/svg%3E');
-		background-position: right 0.5rem center;
-		background-repeat: no-repeat;
-		padding-right: 2.5rem;
-	}
-
-  &:hover,
-  &:focus {
-    background-color: var(--primary-hover);
-    outline: 2px solid white;
-    outline-offset: 2px;
-  }
-
-  &:active {
-    transform: scale(0.90)
-  }
-
-  &:disabled {
-    opacity: .5;
-    pointer-events: none;
-  }
-
-	&.primary {
-		background-color: var(--primary-light);
-
-		&:hover,
-		&:focus {
-			background-color: var(--primary-hover);
-		}
 	}
 }
 
@@ -529,15 +452,6 @@ select {
 
 			.jobs-listings__job-details {
 				color: var(--text-muted);
-			}
-
-			button {
-				background-color: var(--primary-light);
-
-				&.is-applied {
-					background: var(--bg-success);
-					pointer-events: none;
-				}
 			}
 
 			h3 {
