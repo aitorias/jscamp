@@ -1,0 +1,45 @@
+.pagination {
+	align-items: center;
+	display: flex;
+	gap: 0.5rem;
+	justify-content: center;
+	margin-block: 2rem;
+
+	.paginationButtons {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	a,
+	.paginationButton {
+		align-items: center;
+		border-radius: 0.5rem;
+		color: white;
+		padding: 0.75rem 1.5rem;
+		display: flex;
+		text-decoration: none;
+		padding: 0.75rem 1.5rem;
+		transition: all 0.2s;
+
+		&:active,
+		&.active {
+			background-color: var(--primary-light);
+			color: white;
+		}
+
+		&.active {
+			pointer-events: none;
+		}
+
+		&:focus,
+		&:hover {
+			outline: 2px solid white;
+			outline-offset: 2px;
+		}
+
+		&:hover {
+			color: var(--text-muted);
+			background-color: #FFFFFF;
+		}
+	}
+}
