@@ -1,10 +1,11 @@
-import { HeaderLinks } from '@features/ui/header/header-links.component'
-import { HeaderNav } from '@features/ui/header/header-nav.component'
+import { HeaderLinks } from '@features/ui/header/header-links/header-links.component.jsx'
+import { HeaderNav } from '@features/ui/header/header-nav/header-nav.component.jsx'
 import { SVG } from '@features/ui/shared'
+import styles from '@ui/header/header.module.css'
 
 export function Header() {
 	const menuLinks = [
-		{ href: 'index.html', text: 'Índice' },
+		{ href: 'index.html', text: 'Inicio' },
 		{ href: 'empleos', text: 'Empleos' }
 	]
 
@@ -13,7 +14,7 @@ export function Header() {
 	]
 
 	return (
-		<header className='site-header'>
+		<header className={styles.header}>
 			<h1>
 				<SVG strokeWidth={2} viewBox={'0 0 24 24'}>
 					<polyline points='16 18 22 12 16 6'></polyline>
