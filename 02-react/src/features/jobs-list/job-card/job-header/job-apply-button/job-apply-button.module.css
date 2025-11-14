@@ -1,0 +1,4 @@
+.isApplied {
+	background: var(--bg-success);
+	pointer-events: none;
+}

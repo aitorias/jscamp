@@ -1,4 +1,5 @@
 import { JobCard } from '@features/jobs-list/job-card'
+import styles from '@features/jobs-list/jobs-list.module.css'
 
 export function JobsList({ jobs, page }) {
 	return (
@@ -8,20 +9,20 @@ export function JobsList({ jobs, page }) {
 					<p>No hay trabajos disponibles.</p>
 				</>
 			) : (
-				<div className='jobs-listings'>
+				<div className={styles.jobsList}>
 					{jobs.map((job) => (
 						<JobCard
 							key={job.id}
 							job={{
-								title: job.title,
-								business: job.company,
-								description: job.description,
+								title: job.titulo,
+								business: job.empresa,
+								description: job.descripcion,
 								salary: '€40,000 - €60,000',
-								modality: 'Remoto',
+								location: job.ubicacion,
 								data: {
-									technology: 'React',
-									locationType: job.location,
-									experience: 'Senior',
+									technology: job.data.technology,
+									modality: job.data.modalidad,
+									experience: job.data.nivel,
 								},
 							}}
 						/>
