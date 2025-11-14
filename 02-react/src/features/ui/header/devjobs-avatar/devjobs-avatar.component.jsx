@@ -7,7 +7,7 @@ export function DevJobsAvatar({ service = 'github', username = 'aAitorias', size
 	const url = createUrl(service, username)
 
 	return (
-		<Link href={'#'} className={styles.avatarLink}>
+		<Link href='#' className={styles.avatarLink}>
 			<Image
 				src={url}
 				alt={`Avatar de ${username} en ${service}`}

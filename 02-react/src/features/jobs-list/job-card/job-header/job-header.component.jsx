@@ -10,7 +10,7 @@ export function JobHeader({ title, business, location, isApplied, onApply }) {
 				<JobTitle title={title} />
 				<JobDetails business={business} location={location} />
 			</div>
-			<JobApplyButton isApplied={isApplied} onApply={onApply} defaultText={'Aplicar'} isAppliedText={'Aplicado'} />
+			<JobApplyButton isApplied={isApplied} onApply={onApply} defaultText='Aplicar' isAppliedText='Aplicado' />
 		</header>
 	)
 }

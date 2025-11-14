@@ -6,7 +6,7 @@ import styles from '@features/jobs-list/job-card/job-card.module.css'
 export function JobCard({ job }) {
 	const [isApplied, setIsApplied] = useState(false)
 
-	const { data, title, business, description, location, salary, modality } = job
+	const { data, title, business, description, location } = job
 
 	const handleApply = (event) => {
 		event.preventDefault()
@@ -15,7 +15,7 @@ export function JobCard({ job }) {
 	}
 
 	return (
-		<article className={styles.jobCard} data-technology={data?.technology} data-location-type={data?.modality} data-experience={data?.experience}>
+		<article className={styles.jobCard} data-technology={data?.technology} data-modality={data?.modality} data-experience={data?.experience}>
 			<JobHeader title={title} business={business} location={location} isApplied={isApplied} onApply={handleApply} />
 			<JobDescription description={description} />
 		</article>

@@ -47,7 +47,7 @@ export function Pagination({ currentPage = 1, totalPages = 10, onPageChange = ()
 					height={24}
 					width={24}
 					viewBox={'0 0 24 24'}
-					strokeWidth={'2'}>
+					strokeWidth={2}>
 					<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
 					<path d="M15 6l-6 6l6 6"></path>
 				</SVG>

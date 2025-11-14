@@ -17,7 +17,6 @@ export function JobsList({ jobs, page }) {
 								title: job.titulo,
 								business: job.empresa,
 								description: job.descripcion,
-								salary: '€40,000 - €60,000',
 								location: job.ubicacion,
 								data: {
 									technology: job.data.technology,
