@@ -1,9 +1,11 @@
-export function Link({ href, title, className, children, isActive, onClick, ...rest }) {
+export function Link({ href, title, className, isActive, onClick, children, ...rest }) {
+	const linkClassName = `${className} ${isActive ? 'active' : ''}`.trim()
+
 	return (
 		<a
 			href={href}
 			title={title}
-			className={`${className} ${isActive ? 'active' : ''}`.trim()}
+			className={linkClassName}
 			onClick={onClick}
 			{...rest}
 		>
