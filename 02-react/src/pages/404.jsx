@@ -1,8 +1,12 @@
+import styles from './404.module.css'
+
 export function Error404Page({ }) {
 	return (
-		<>
-			<h1>Error 404: Página no encontrada</h1>
-			<p>Lo sentimos, la página que estás buscando no existe</p>
-		</>
+		<main className={styles.notFound}>
+			<h1>404</h1>
+			<h2>Página no encontrada</h2>
+			<p>La página que buscas no existe.</p>
+			<a href="/">Volver al inicio</a>
+		</main>
 	)
 }
