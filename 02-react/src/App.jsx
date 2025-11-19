@@ -1,23 +1,16 @@
-import { Header, Footer } from '@features/ui'
+import { Header, Footer } from '@shared'
 import { Error404Page, HomePage, SearchPage } from '@pages'
+import { useRouter } from '@hooks/react-hooks'
 
 export default function App() {
-	const currentPath = window.location.pathname
-
-	let pageComponent = <Error404Page />
-
-	if (currentPath === '/') {
-		pageComponent = <HomePage />
-	} else if (currentPath === '/search') {
-		pageComponent = <SearchPage />
-	} else {
-		pageComponent = <Error404Page />
-	}
+	const { pathname } = useRouter()
 
 	return (
 		<>
 			<Header />
-			{pageComponent}
+			{pathname === '/' && <HomePage />}
+			{pathname === '/search' && <SearchPage />}
+			{pathname !== '/' && pathname !== '/search' && <Error404Page />}
 			<Footer />
 		</>
 	)
