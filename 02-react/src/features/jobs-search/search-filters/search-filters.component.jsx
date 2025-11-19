@@ -1,7 +1,106 @@
-import { Button } from '@features/ui'
+import { Button, Select } from '@features/ui'
 import styles from '@features/jobs-search/search-filters/search-filters.module.css'
 
-export function SearchFilters({ technologyDropdownID, searchTechnologyID, searchLocationID, searchExperienceID }) {
+export function SearchFilters({ technologyDropdownID, searchTechnologyID, searchLocationID, searchExperienceID, onOptionChanged = () => { } }) {
+	const locationOptions = [
+		{
+			label: 'Remoto',
+			value: 'remoto'
+		},
+		{
+			label: 'Argentina',
+			options: [
+				{
+					label: 'Buenos Aires',
+					value: 'bsas'
+				}
+			]
+		},
+		{
+			label: 'Chile',
+			options: [
+				{
+					label: 'Santiago de Chile',
+					value: 'santiago'
+				}
+			]
+		},
+		{
+			label: 'Colombia',
+			options: [
+				{
+					label: 'Bogotá',
+					value: 'bogota'
+				}
+			]
+		},
+		{
+			label: 'España',
+			options: [
+				{
+					label: 'Barcelona',
+					value: 'barcelona'
+				},
+				{
+					label: 'Madrid',
+					value: 'madrid'
+				},
+				{
+					label: 'Valencia',
+					value: 'valencia'
+				}
+			]
+		},
+		{
+			label: 'México',
+			options: [
+				{
+					label: 'Ciudad de México',
+					value: 'cdmx'
+				},
+				{
+					label: 'Guadalajara',
+					value: 'guadalajara'
+				},
+				{
+					label: 'Monterrey',
+					value: 'monterrey'
+				}
+			]
+		},
+		{
+			label: 'Perú',
+			options: [
+				{
+					label: 'Lima',
+					value: 'lima'
+				}
+			]
+		},
+	]
+
+	const experienceOptions = [
+		{
+			label: 'Junior',
+			value: 'junior'
+		},
+		{
+			label: 'Mid',
+			value: 'mid-level'
+		},
+		{
+			label: 'Senior',
+			value: 'senior'
+		},
+		{
+			label: 'Lead',
+			value: 'lead'
+		}
+	]
+
+	const handleSelectChange = (event) => {
+		onOptionChanged(event)
+	};
 
 	return (
 		<div className={styles.searchFilters}>
@@ -33,41 +132,22 @@ export function SearchFilters({ technologyDropdownID, searchTechnologyID, search
 				</div>
 			</div>
 			<div className={styles.formGroup}>
-				<select name={searchLocationID} id={searchLocationID}>
-					<option value="" selected>Ubicación</option>
-					<option value="remoto">Remoto</option>
-					<optgroup label="Argentina">
-						<option value="bsas">Buenos Aires</option>
-					</optgroup>
-					<optgroup label="Chile">
-						<option value="santiago">Santiago de Chile</option>
-					</optgroup>
-					<optgroup label="Colombia">
-						<option value="bogota">Bogotá</option>
-					</optgroup>
-					<optgroup label="España">
-						<option value="barcelona">Barcelona</option>
-						<option value="madrid">Madrid</option>
-						<option value="valencia">Valencia</option>
-					</optgroup>
-					<optgroup label="México">
-						<option value="cdmx">Ciudad de México</option>
-						<option value="guadalajara">Guadalajara</option>
-						<option value="monterrey">Monterrey</option>
-					</optgroup>
-					<optgroup label="Perú">
-						<option value="lima">Lima</option>
-					</optgroup>
-				</select>
+				<Select
+					name={searchLocationID}
+					id={searchLocationID}
+					options={locationOptions}
+					defaultValue='Ubicación'
+					onChange={handleSelectChange}
+				/>
 			</div>
 			<div className={styles.formGroup}>
-				<select name={searchExperienceID} id={searchExperienceID}>
-					<option value="" selected>Nivel de experiencia</option>
-					<option value="junior">Júnior</option>
-					<option value="mid-level">Mid</option>
-					<option value="senior">Senior</option>
-					<option value="lead">Lead</option>
-				</select>
+				<Select
+					name={searchExperienceID}
+					id={searchExperienceID}
+					options={experienceOptions}
+					defaultValue='Experiencia'
+					onChange={handleSelectChange}
+				/>
 			</div>
 		</div>
 	)
