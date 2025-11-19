@@ -42,7 +42,7 @@ export function Pagination({ currentPage = 1, totalPages = 10, onPageChange = ()
 
 	return (
 		<nav className={styles.pagination}>
-			<Link href='#' className='pagination__prev-button' data-page-number='0' onClick={handlePrevClick} style={stylePrevLink}>
+			<Link className='pagination__prev-button' data-page-number='0' onClick={handlePrevClick} style={stylePrevLink}>
 				<SVG
 					height={24}
 					width={24}
@@ -59,13 +59,13 @@ export function Pagination({ currentPage = 1, totalPages = 10, onPageChange = ()
 						}`.trim()
 
 					return (
-						<Link key={page} href='#' className={buttonsClassName} data-page-number={page} onClick={handleChangePage}>
+						<Link key={page} className={buttonsClassName} data-page-number={page} onClick={handleChangePage}>
 							{page}
 						</Link>
 					)
 				})}
 			</div>
-			<Link href='#' className='pagination__next-button' data-page-number='2' onClick={handleNextClick} style={styleNextLink}>
+			<Link className='pagination__next-button' data-page-number='2' onClick={handleNextClick} style={styleNextLink}>
 				<SVG
 					height={24}
 					width={24}
