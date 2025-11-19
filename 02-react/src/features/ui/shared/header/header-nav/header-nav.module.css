@@ -3,21 +3,12 @@
 	display: flex;
 	gap: 1rem;
 
-	a {
-		color: var(--text-secondary);
-		font-weight: 500;
+	.link {
+		color: white;
 		text-decoration: none;
-		transition: color 0.2s;
-
-		&:hover,
-		&:focus {
-			color: var(--primary);
-			outline: none;
-		}
 
 		&.active {
-			color: var(--primary-light);
-			font-weight: 700;
+			color: var(--primary-light)
 		}
 	}
 }
