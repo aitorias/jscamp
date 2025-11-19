@@ -1,1 +1,1 @@
-export { JobsSearchForm } from './jobs-search.component.jsx'
+export { JobsSearchForm } from './jobs-search-form.component.jsx'
