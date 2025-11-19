@@ -5,7 +5,7 @@ import styles from '@ui/header/header.module.css'
 
 export function Header() {
 	const menuLinks = [
-		{ href: 'index.html', text: 'Inicio' },
+		{ href: '/', text: 'Inicio' },
 		{ href: 'empleos', text: 'Empleos' }
 	]
 
