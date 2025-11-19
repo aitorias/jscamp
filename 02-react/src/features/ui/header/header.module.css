@@ -14,6 +14,14 @@
 		gap: 0.5rem;
 		line-height: 1.5;
 		text-wrap: balance;
+
+		a {
+			align-items: center;
+			color: unset;
+			display: flex;
+			gap: 0.5rem;
+			text-decoration: none;
+		}
 	}
 
 	svg {
