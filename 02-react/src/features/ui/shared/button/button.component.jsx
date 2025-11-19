@@ -1,6 +1,6 @@
 import styles from '@ui/shared/button/button.module.css'
 
-export function Button({ type = 'button', id, title, variant, className = '', onClick, disabled, children, ...rest }) {
+export function Button({ type = 'button', id, title, variant = 'primary', className = '', onClick, disabled, children, ...rest }) {
 	const variantClass = variant ? styles[variant] : ''
 	const buttonClassName = `${styles.button} ${variantClass} ${className}`.trim()
 
