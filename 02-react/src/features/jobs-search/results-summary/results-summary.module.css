@@ -1,0 +1,6 @@
+.resultsSummary {
+	display: flex;
+	margin: 0;
+	padding-block-start: 1rem;
+	text-align: left;
+}
