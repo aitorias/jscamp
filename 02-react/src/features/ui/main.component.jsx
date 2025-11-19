@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { JobsSearch } from '@features/jobs-search'
+import { JobsSearchForm } from '@features/jobs-search'
 import { JobsSection } from '@features/ui'
 import jobsData from '@data/data.json'
 
@@ -9,22 +9,33 @@ export function Main() {
 	const [currentPage, setCurrentPage] = useState(1)
 	const [searchText, setSearchText] = useState('')
 	const [filters, setFilters] = useState({
-		technology: '',
+		technology: [],
 		location: '',
 		experience: ''
 	})
 
 	const jobsFilteredByFilters = jobsData.filter((job) => {
+		const jobTech = job.data?.technology
+			? job.data.technology
+				.toString()
+				.split(',')
+				.map(t => t.trim().toLowerCase())
+			: [];
+
+		const matchTechnology =
+			filters.technology.length === 0 || filters.technology.some(tech =>
+				jobTech.includes(tech.toLowerCase())
+			);
 		const matchLocation =
 			!filters.location || job.data?.modalidad.toLowerCase() === filters.location.toLowerCase()
 		const matchExperience =
 			!filters.experience || job.data?.nivel.toLowerCase() === filters.experience.toLowerCase()
 
-		return (matchLocation && matchExperience)
+		return matchTechnology && matchLocation && matchExperience
 	})
 
 	const jobsFilteredByText = searchText === '' ? jobsFilteredByFilters : jobsFilteredByFilters.filter((job) => {
-		return job.titulo?.toLowerCase().includes(searchText.toLowerCase())
+		return job.titulo?.toLowerCase().includes(searchText.toLowerCase()) || job.empresa?.toLowerCase().includes(searchText.toLowerCase()) || job.data?.technology?.toLowerCase().includes(searchText.toLowerCase())
 	})
 
 	const totalPages = Math.ceil(jobsFilteredByText.length / RESULTS_PER_PAGE)
@@ -49,9 +60,19 @@ export function Main() {
 		setCurrentPage(1)
 	}
 
+	const handleReset = () => {
+		setFilters({
+			technology: '',
+			location: '',
+			experienceLevel: '',
+		})
+		setSearchText('')
+		setCurrentPage(1)
+	}
+
 	return (
 		<main>
-			<JobsSearch onFiltersChange={handleFiltersChange} onTextFilter={handleTextFilter} />
+			<JobsSearchForm totalResults={jobsFilteredByText.length} textToFilter={searchText} onFiltersChange={handleFiltersChange} onTextFilter={handleTextFilter} onReset={handleReset} />
 			<JobsSection jobs={pageResults} currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange} />
 		</main>
 	)
