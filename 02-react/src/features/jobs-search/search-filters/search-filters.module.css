@@ -2,11 +2,11 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem;
-	margin-top: 1rem;
 
 	.formGroup {
 		display: flex;
 		gap: 0.5rem;
+		position: relative;
 
 		label {
 			cursor: pointer;
@@ -25,5 +25,10 @@
 			background-repeat: no-repeat;
 			padding-right: 2.5rem;
 		}
+	}
+
+	.checkboxGroup {
+		display: flex;
+		gap: 1rem;
 	}
 }

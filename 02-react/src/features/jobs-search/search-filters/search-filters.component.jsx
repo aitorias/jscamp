@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { Button, Select } from '@features/ui'
 import styles from '@features/jobs-search/search-filters/search-filters.module.css'
+import { Dropdown } from '@features/ui/dropdown/dropdown.component.jsx'
 
 export function SearchFilters({ technologyDropdownID, searchTechnologyID, searchLocationID, searchExperienceID, onOptionChanged = () => { } }) {
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
 	const locationOptions = [
 		{
 			label: 'Remoto',
@@ -102,34 +106,42 @@ export function SearchFilters({ technologyDropdownID, searchTechnologyID, search
 		onOptionChanged(event)
 	};
 
+	const handleDropdown = () => {
+		setIsDropdownOpen((open) => !open)
+	}
+
+	const handleCheckboxChange = (event) => {
+		onOptionChanged(event)
+	}
+
 	return (
 		<div className={styles.searchFilters}>
 			<div className={styles.formGroup} id="technology-checkboxes">
-				<Button type='button' id={technologyDropdownID} className={styles.dropdownButton}>
+				<Button type='button' id={technologyDropdownID} aria-label={`${technologyDropdownID}dropdown`} className={styles.dropdownButton} onClick={handleDropdown}>
 					Tecnología
 				</Button>
-				<div aria-labelledby={technologyDropdownID} className="dropdown form-group flex-col hidden">
-					<div className="checkbox-group">
-						<input type="checkbox" id={`${searchTechnologyID}-javascript`} name={searchTechnologyID} value="javascript" />
+				<Dropdown ariaLabelledBy={`${technologyDropdownID}dropdown`} hidden={!isDropdownOpen} open={isDropdownOpen} onClose={() => setIsDropdownOpen(false)}>
+					<div className={styles.checkboxGroup}>
+						<input type="checkbox" id={`${searchTechnologyID}-javascript`} name={searchTechnologyID} value="javascript" onChange={handleCheckboxChange} />
 						<label htmlFor={`${searchTechnologyID}-javascript`}>JavaScript</label>
 					</div>
-					<div className="checkbox-group">
-						<input type="checkbox" id={`${searchTechnologyID}-python`} name={searchTechnologyID} value="python" />
+					<div className={styles.checkboxGroup}>
+						<input type="checkbox" id={`${searchTechnologyID}-python`} name={searchTechnologyID} value="python" onChange={handleCheckboxChange} />
 						<label htmlFor={`${searchTechnologyID}-python`}>Python</label>
 					</div>
-					<div className="checkbox-group">
-						<input type="checkbox" id={`${searchTechnologyID}-java`} name={searchTechnologyID} value="java" />
+					<div className={styles.checkboxGroup}>
+						<input type="checkbox" id={`${searchTechnologyID}-java`} name={searchTechnologyID} value="java" onChange={handleCheckboxChange} />
 						<label htmlFor={`${searchTechnologyID}-java`}>Java</label>
 					</div>
-					<div className="checkbox-group">
-						<input type="checkbox" id={`${searchTechnologyID}-react`} name={searchTechnologyID} value="react" />
+					<div className={styles.checkboxGroup}>
+						<input type="checkbox" id={`${searchTechnologyID}-react`} name={searchTechnologyID} value="react" onChange={handleCheckboxChange} />
 						<label htmlFor={`${searchTechnologyID}-react`}>React</label>
 					</div>
-					<div className="checkbox-group">
-						<input type="checkbox" id={`${searchTechnologyID}-node`} name={searchTechnologyID} value="node" />
+					<div className={styles.checkboxGroup}>
+						<input type="checkbox" id={`${searchTechnologyID}-node`} name={searchTechnologyID} value="node" onChange={handleCheckboxChange} />
 						<label htmlFor={`${searchTechnologyID}-node`}>Node.js</label>
 					</div>
-				</div>
+				</Dropdown>
 			</div>
 			<div className={styles.formGroup}>
 				<Select
