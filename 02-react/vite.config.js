@@ -8,6 +8,7 @@ export default defineConfig({
 		alias: {
 			'@data': '/src/data',
 			'@features': '/src/features',
+			'@hooks': '/src/utils/hooks',
 			'@pages': '/src/pages',
 			'@shared': '/src/features/ui/shared',
 			'@ui': '/src/features/ui',
