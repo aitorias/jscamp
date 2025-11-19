@@ -58,6 +58,10 @@ export function JobsSearchForm({ totalResults, textToFilter, onFiltersChange = (
 		onFiltersChange(filters)
 	}
 
+	const handleOnSubmit = (event) => {
+		event.preventDefault()
+	}
+
 	const handleReset = () => {
 		document.querySelector('.search-form').reset()
 		onReset()
@@ -67,7 +71,7 @@ export function JobsSearchForm({ totalResults, textToFilter, onFiltersChange = (
 		<section className={styles.jobsSearch}>
 			<h1>Encuentra tu próximo trabajo</h1>
 			<p>Explora miles de oportunidades en el sector tecnológico.</p>
-			<form role="search" className='search-form' onChange={handleFormChange}>
+			<form role="search" className='search-form' onChange={handleFormChange} onSubmit={handleOnSubmit}>
 				<SearchBar searchName={searchName} onInputBlur={handleInputBlur} onInputFocus={handleInputFocus} onTextChange={handleTextChange} className={focusedField === 'search' ? 'input-focused' : ''} />
 				{focusedField === 'search' && (
 					<small className={styles.inputHint}>Busca por título de trabajo, empresa o tecnología</small>
