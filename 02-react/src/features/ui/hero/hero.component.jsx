@@ -18,7 +18,7 @@ export function Hero({ }) {
 						<path d="M21 21l-6 -6" />
 					</SVG>
 					<input type="text" id={inputSearchID} name={inputSearchID} placeholder="Buscar empleos por título, habilidad o empresa" required />
-					<Button type='submit' variant='primary' disabled title='Buscar'>
+					<Button type='submit' variant='primary' disabled={true} title='Buscar'>
 						Buscar
 					</Button>
 				</div>

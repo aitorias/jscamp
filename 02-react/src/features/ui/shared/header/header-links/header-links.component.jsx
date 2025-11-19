@@ -1,4 +1,4 @@
-import { DevJobsAvatar } from '@features/ui/header/devjobs-avatar/devjobs-avatar.component'
+import { DevJobsAvatar } from '@features/ui/shared/header/devjobs-avatar/devjobs-avatar.component'
 import { Link } from '@features/ui/shared'
 import styles from './header-links.module.css'
 

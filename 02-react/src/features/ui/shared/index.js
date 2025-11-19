@@ -1,3 +1,5 @@
+export { Footer } from './footer/footer.component.jsx'
+export * from './header'
 export { Button } from './button/button.component.jsx'
 export { Dropdown } from './dropdown/dropdown.component.jsx'
 export { Image } from './image.component.jsx'
