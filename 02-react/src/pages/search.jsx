@@ -45,11 +45,6 @@ export function SearchPage({ }) {
 		currentPage * RESULTS_PER_PAGE
 	)
 
-	const handlePageChange = (page) => {
-		setCurrentPage(page)
-		window.scrollTo({ top: 0, behavior: 'smooth' })
-	}
-
 	const handleFiltersChange = (newOption) => {
 		setFilters(prev => ({ ...prev, ...newOption }));
 		setCurrentPage(1);
@@ -68,6 +63,11 @@ export function SearchPage({ }) {
 		})
 		setSearchText('')
 		setCurrentPage(1)
+	}
+
+	const handlePageChange = (page) => {
+		setCurrentPage(page)
+		window.scrollTo({ top: 0, behavior: 'smooth' })
 	}
 
 	return (
