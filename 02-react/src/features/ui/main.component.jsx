@@ -7,7 +7,7 @@ const RESULTS_PER_PAGE = 5
 
 export function Main() {
 	const [currentPage, setCurrentPage] = useState(1)
-	const [textToFilter, setTextToFilter] = useState('')
+	const [searchText, setSearchText] = useState('')
 	const [filters, setFilters] = useState({
 		technology: '',
 		location: '',
@@ -15,14 +15,16 @@ export function Main() {
 	})
 
 	const jobsFilteredByFilters = jobsData.filter((job) => {
-		return (
-			(filters.location === '' || job.data?.modalidad.toLowerCase() === filters.location.toLowerCase()) &&
-			(filters.experience === '' || job.data?.nivel.toLowerCase() === filters.experience.toLowerCase())
-		)
+		const matchLocation =
+			!filters.location || job.data?.modalidad.toLowerCase() === filters.location.toLowerCase()
+		const matchExperience =
+			!filters.experience || job.data?.nivel.toLowerCase() === filters.experience.toLowerCase()
+
+		return (matchLocation && matchExperience)
 	})
 
-	const jobsFilteredByText = textToFilter === '' ? jobsFilteredByFilters : jobsFilteredByFilters.filter((job) => {
-		return job.titulo?.toLowerCase().includes(textToFilter.toLowerCase())
+	const jobsFilteredByText = searchText === '' ? jobsFilteredByFilters : jobsFilteredByFilters.filter((job) => {
+		return job.titulo?.toLowerCase().includes(searchText.toLowerCase())
 	})
 
 	const totalPages = Math.ceil(jobsFilteredByText.length / RESULTS_PER_PAGE)
@@ -37,20 +39,19 @@ export function Main() {
 		window.scrollTo({ top: 0, behavior: 'smooth' })
 	}
 
-	const handleSearch = (filters) => {
-		console.log('Main:handleSearch:', filters)
-		setFilters(filters)
-		setCurrentPage(1)
-	}
+	const handleFiltersChange = (newOption) => {
+		setFilters(prev => ({ ...prev, ...newOption }));
+		setCurrentPage(1);
+	};
 
-	const handleTextFilter = (textToFilter) => {
-		setTextToFilter(textToFilter)
+	const handleTextFilter = (inputText) => {
+		setSearchText(inputText)
 		setCurrentPage(1)
 	}
 
 	return (
 		<main>
-			<JobsSearch jobs={pageResults} onSearch={handleSearch} onTextFilter={handleTextFilter} />
+			<JobsSearch onFiltersChange={handleFiltersChange} onTextFilter={handleTextFilter} />
 			<JobsSection jobs={pageResults} currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange} />
 		</main>
 	)
