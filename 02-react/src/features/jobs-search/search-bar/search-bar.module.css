@@ -8,6 +8,12 @@
 	gap: 0.5rem;
 	padding: .25rem .5rem;
 
+
+	&.input-focused {
+		border-color: #4f46e5;
+		outline: 2px solid #4f46e5;
+	}
+
 	svg {
 		color: var(--text-muted);
 		flex-shrink: 0;
