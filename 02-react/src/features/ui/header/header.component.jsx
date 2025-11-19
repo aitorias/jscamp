@@ -6,7 +6,7 @@ import styles from '@ui/header/header.module.css'
 export function Header() {
 	const menuLinks = [
 		{ href: '/', text: 'Inicio' },
-		{ href: 'empleos', text: 'Empleos' }
+		{ href: '/search', text: 'Empleos' }
 	]
 
 	const buttons = [
