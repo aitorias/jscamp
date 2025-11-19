@@ -1,7 +1,7 @@
 import { SVG } from '@features/ui'
 import styles from '@features/jobs-search/search-bar/search-bar.module.css'
 
-export function SearchBar({ jobs, searchName, onTextChange = () => { } }) {
+export function SearchBar({ searchName, onTextChange = () => { } }) {
 	const handleInputChange = (event) => {
 		const inputText = event.target.value
 
