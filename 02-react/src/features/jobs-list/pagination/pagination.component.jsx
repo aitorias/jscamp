@@ -1,5 +1,5 @@
 import { Button, Link, SVG } from '@features/ui';
-import styles from '@features/jobs-list/pagination/pagination.module.css'
+import styles from './pagination.module.css'
 
 export function Pagination({ currentPage = 1, totalPages = 10, onPageChange = () => { } }) {
 	const pages = Array.from({ length: totalPages }, (_, index) => index + 1)

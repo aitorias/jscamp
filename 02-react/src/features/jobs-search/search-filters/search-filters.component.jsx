@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Button, Select } from '@features/ui'
+import { Button, Dropdown, Select } from '@features/ui'
 import styles from '@features/jobs-search/search-filters/search-filters.module.css'
-import { Dropdown } from '@features/ui/dropdown/dropdown.component.jsx'
 
 export function SearchFilters({ technologyDropdownID, searchTechnologyID, searchLocationID, searchExperienceID }) {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)

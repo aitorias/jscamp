@@ -1,5 +1,5 @@
 import { SVG } from '@features/ui'
-import styles from '@features/jobs-search/search-bar/search-bar.module.css'
+import styles from './search-bar.module.css'
 
 export function SearchBar({ searchName, className, onInputBlur = () => { }, onInputFocus = () => { }, onTextChange = () => { } }) {
 	const handleInpuBlur = (event) => {

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { JobDescription } from '@features/jobs-list/job-card/job-description.component'
 import { JobHeader } from '@features/jobs-list/job-card/job-header/job-header.component'
-import styles from '@features/jobs-list/job-card/job-card.module.css'
+import styles from './job-card.module.css'
 
 export function JobCard({ job }) {
 	const [isApplied, setIsApplied] = useState(false)

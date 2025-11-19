@@ -1,5 +1,5 @@
 import { Button } from '@features/ui'
-import styles from '@features/jobs-list/job-card/job-header/job-apply-button/job-apply-button.module.css'
+import styles from './job-apply-button.module.css'
 
 export function JobApplyButton({ isApplied, onApply, defaultText, isAppliedText }) {
 	const buttonClassAplied = isApplied ? styles.isApplied : ''

@@ -1,4 +1,4 @@
-import styles from '@features/jobs-search/results-summary/results-summary.module.css'
+import styles from './results-summary.module.css'
 
 export function ResultsSummary({ totalResults, textToFilter }) {
 	if (totalResults === 0) return null

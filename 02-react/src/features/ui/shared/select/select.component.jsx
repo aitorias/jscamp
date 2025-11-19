@@ -1,4 +1,4 @@
-import styles from '@ui/shared/select/select.module.css'
+import styles from './select.module.css'
 
 export function Select({ name, id, options, defaultValue, onChange }) {
 	return (

@@ -3,7 +3,7 @@ import { SearchBar } from '@features/jobs-search/search-bar/search-bar.component
 import { SearchFilters } from '@features/jobs-search/search-filters/search-filters.component';
 import { ResultsSummary } from '@features/jobs-search/results-summary/results-summary.component';
 import { Button } from '@features/ui';
-import styles from '@features/jobs-search/jobs-search-form.module.css'
+import styles from './jobs-search-form.module.css'
 
 export function JobsSearchForm({ totalResults, textToFilter, onFiltersChange = () => { }, onTextFilter = () => { }, onReset = () => { } }) {
 	const searchName = useId()

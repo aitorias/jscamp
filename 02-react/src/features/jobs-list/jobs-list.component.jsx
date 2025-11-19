@@ -1,5 +1,5 @@
 import { JobCard } from '@features/jobs-list/job-card'
-import styles from '@features/jobs-list/jobs-list.module.css'
+import styles from './jobs-list.module.css'
 
 export function JobsList({ jobs, page }) {
 	return (

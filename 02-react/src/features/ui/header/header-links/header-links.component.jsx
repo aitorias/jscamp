@@ -1,6 +1,6 @@
 import { DevJobsAvatar } from '@features/ui/header/devjobs-avatar/devjobs-avatar.component'
 import { Link } from '@features/ui/shared'
-import styles from '@ui/header/header-links/header-links.module.css'
+import styles from './header-links.module.css'
 
 export function HeaderLinks({ buttons }) {
 	return (

@@ -1,7 +1,6 @@
-import { Image } from '@features/ui/shared'
-import { Link } from '@features/ui/shared'
+import { Image, Link } from '@features/ui/shared'
 import { createUrl } from '@utils/create-url'
-import styles from '@ui/header/devjobs-avatar/devjobs-avatar.module.css'
+import styles from './devjobs-avatar.module.css'
 
 export function DevJobsAvatar({ service = 'github', username = 'aAitorias', size }) {
 	const url = createUrl(service, username)

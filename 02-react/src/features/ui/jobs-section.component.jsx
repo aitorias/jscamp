@@ -1,6 +1,5 @@
-import { JobsList } from '@features/jobs-list'
-import { Pagination } from '@features/jobs-list'
-import styles from '@features/ui/jobs-section.module.css'
+import { JobsList, Pagination } from '@features/jobs-list'
+import styles from './jobs-section.module.css'
 
 export function JobsSection({ jobs, currentPage, totalPages, handlePageChange = () => { } }) {
 	return (
