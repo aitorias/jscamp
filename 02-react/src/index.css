@@ -30,18 +30,6 @@
   --hsla-example: hsla(210, 100%, 56%, 1);
 }
 
-.sr-only {
-	border-width: 0;
-	clip: rect(0, 0, 0, 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	white-space: nowrap;
-	width: 1px;
-}
-
 body {
   background-color: var(--background);
   color: var(--text-primary);
@@ -113,50 +101,6 @@ article {
 		border: none;
 		padding: 0;
 		text-align: unset;
-	}
-}
-
-form {
-  margin: 0 auto;
-  max-width: 42rem;
-  padding-inline: 1rem;
-  width: 100%;
-
-	& > .search-group {
-		align-items: center;
-		background-color: var(--input-bg);
-		border-radius: 0.5rem;
-		display: flex;
-		gap: 0.5rem;
-		padding: 0.5rem;
-	}
-
-	& > .search-group {
-		border: 1px solid var(--border);
-	}
-
-	input[type="text"],
-	.input {
-		background: transparent;
-		border: none;
-		color: var(--text-primary);
-		flex: 1;
-		font-family: inherit;
-		font-size: 1rem;
-		outline: none;
-		padding: 0.75rem 0.5rem;
-
-		&::placeholder {
-			color: #64748b;
-		}
-	}
-
-	span {
-		align-items: center;
-		color: var(--text-muted);
-		display: flex;
-		flex-shrink: 0;
-		padding-left: 0.75rem;
 	}
 }
 
@@ -252,10 +196,14 @@ main > section:nth-child(2) .cards {
 	visibility: hidden !important;
 }
 
-.dropdown {
-	background-color: var(--input-bg);
-	border-radius: .5rem;
+.sr-only {
+	border-width: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
 	position: absolute;
-	padding: 1rem;
-	z-index: 1;
+	white-space: nowrap;
+	width: 1px;
 }
