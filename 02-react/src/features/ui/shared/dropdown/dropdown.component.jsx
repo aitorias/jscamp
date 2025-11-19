@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import styles from '@ui/dropdown/dropdown.module.css'
+import styles from './dropdown.module.css'
 
 export function Dropdown({ ariaLabelledBy, className = '', hidden = false, open, onClose = () => { }, children }) {
 	const ref = useRef(null);
